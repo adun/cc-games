@@ -1,6 +1,6 @@
 # Basic Game Checklist:
 
-- [ ] Create a player
+- [x] Create a player
 - [ ] Shoot projectiles
 - [ ] Create enemies
 - [ ] Detect collision on enemy / projectile hit
