@@ -107,8 +107,20 @@ function animate() {
 
   player.draw();
 
-  projectiles.forEach((projectile) => {
+  projectiles.forEach((projectile, index) => {
     projectile.update();
+
+    // remove from edges of screen
+    if (
+      projectile.x - projectile.radius < 0 ||
+      projectile.x - projectile.radius > canvas.width ||
+      projectile.y + projectile.radius < 0 ||
+      projectile.y - projectile.radius > canvas.height
+    ) {
+      setTimeout(() => {
+        projectiles.splice(index, 1);
+      }, 0);
+    }
   });
 
   enemies.forEach((enemy, index) => {
@@ -127,7 +139,7 @@ function animate() {
         // avoid the flash effect by telling the next frame to remove the objects
         setTimeout(() => {
           enemies.splice(index, 1);
-          enemies.splice(projectileIndex, 1);
+          projectiles.splice(projectileIndex, 1);
         }, 0);
       }
     });
