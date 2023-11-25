@@ -109,8 +109,21 @@ function animate() {
     projectile.update();
   });
 
-  enemies.forEach((enemy) => {
+  enemies.forEach((enemy, index) => {
     enemy.update();
+
+    projectiles.forEach((projectile, projectileIndex) => {
+      const dist = Math.hypot(projectile.x - enemy.x, projectile.y - enemy.y);
+
+      // projectile touches enemy
+      if (dist - enemy.radius - projectile.radius < 1) {
+        // avoid the flash effect by telling the next frame to remove the objects
+        setTimeout(() => {
+          enemies.splice(index, 1);
+          enemies.splice(projectileIndex, 1);
+        }, 0);
+      }
+    });
   });
 }
 
