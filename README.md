@@ -14,4 +14,4 @@
 - [x] Add game over UI
 - [x] Add restart button
 - [x] Add start game button
-- [ ] UI Animations
+- [x] UI Animations
