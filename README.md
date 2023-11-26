@@ -12,6 +12,6 @@
 - [x] Add score
 - [x] More accurate object removal
 - [x] Add game over UI
-- [ ] Add restart button
+- [x] Add restart button
 - [ ] Add start game button
 - [ ] UI Animations

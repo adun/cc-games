@@ -2,6 +2,7 @@ const canvas = document.querySelector("canvas");
 const scoreEl = document.querySelector("#scoreEl");
 const modalEl = document.querySelector("#modalEl");
 const modalScoreEl = document.querySelector("#modalScoreEl");
+const buttonEl = document.querySelector("#buttonEl");
 const c = canvas.getContext("2d");
 
 canvas.width = innerWidth;
@@ -103,13 +104,27 @@ class Particle {
 const x = canvas.width / 2;
 const y = canvas.height / 2;
 
-const projectiles = [];
-const particles = [];
-const enemies = [];
-const player = new Player(x, y, 10, "white");
+let player = new Player(x, y, 10, "white");
+let projectiles = [];
+let particles = [];
+let enemies = [];
+let animationId = undefined;
+let intervalId = undefined;
+let score = 0;
+
+function init() {
+  player = new Player(x, y, 10, "white");
+  projectiles = [];
+  particles = [];
+  enemies = [];
+  animationId = undefined;
+  intervalId = undefined;
+  score = 0;
+}
 
 function spawnEnemies() {
-  setInterval(() => {
+  intervalId = setInterval(() => {
+    console.log(intervalId);
     const radius = Math.random() * (30 - 4) + 4;
 
     let ex;
@@ -133,9 +148,6 @@ function spawnEnemies() {
     enemies.push(new Enemy(ex, ey, radius, color, velocity));
   }, 1000);
 }
-
-let animationId = undefined;
-let score = 0;
 
 function animate() {
   animationId = requestAnimationFrame(animate);
@@ -180,6 +192,7 @@ function animate() {
     // end game
     if (dist - enemy.radius - player.radius < 1) {
       cancelAnimationFrame(animationId);
+      clearInterval(intervalId);
       modalEl.style.display = "block";
       modalScoreEl.innerHTML = score;
     }
@@ -241,6 +254,13 @@ addEventListener("click", (e) => {
     y: Math.sin(angle) * 4,
   };
   projectiles.push(new Projectile(x, y, 5, "white", velocity));
+});
+
+buttonEl.addEventListener("click", (e) => {
+  init();
+  animate();
+  spawnEnemies();
+  modalEl.style.display = "none";
 });
 
 animate();
