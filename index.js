@@ -1,5 +1,7 @@
 const canvas = document.querySelector("canvas");
 const scoreEl = document.querySelector("#scoreEl");
+const modalEl = document.querySelector("#modalEl");
+const modalScoreEl = document.querySelector("#modalScoreEl");
 const c = canvas.getContext("2d");
 
 canvas.width = innerWidth;
@@ -178,6 +180,8 @@ function animate() {
     // end game
     if (dist - enemy.radius - player.radius < 1) {
       cancelAnimationFrame(animationId);
+      modalEl.style.display = "block";
+      modalScoreEl.innerHTML = score;
     }
 
     for (

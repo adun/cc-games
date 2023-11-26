@@ -11,6 +11,7 @@
 - [x] Create particle explosion on hit
 - [x] Add score
 - [x] More accurate object removal
-- [ ] Add game over UI
+- [x] Add game over UI
 - [ ] Add restart button
 - [ ] Add start game button
+- [ ] UI Animations
