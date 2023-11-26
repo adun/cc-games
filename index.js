@@ -1,4 +1,5 @@
 const canvas = document.querySelector("canvas");
+const scoreEl = document.querySelector("#scoreEl");
 const c = canvas.getContext("2d");
 
 canvas.width = innerWidth;
@@ -132,6 +133,7 @@ function spawnEnemies() {
 }
 
 let animationId = undefined;
+let score = 0;
 
 function animate() {
   animationId = requestAnimationFrame(animate);
@@ -198,13 +200,21 @@ function animate() {
           }
 
           if (enemy.radius - 10 > 5) {
+            score += 100;
+            scoreEl.innerHTML = score;
+
+            // this is where we shrink our enemy
             gsap.to(enemy, { radius: enemy.radius - 10 });
             setTimeout(() => {
               projectiles.splice(projectileIndex, 1);
             }, 0);
           } else {
-            // avoid the flash effect by telling the next frame to remove the objects
+            score += 150;
+            scoreEl.innerHTML = score;
+
+            // remove enemy if there are too small
             setTimeout(() => {
+              // avoid the flash effect by telling the next frame to remove the objects
               enemies.splice(index, 1);
               projectiles.splice(projectileIndex, 1);
             }, 0);
