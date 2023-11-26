@@ -143,15 +143,18 @@ function animate() {
 
   player.draw();
 
-  particles.forEach((particle, index) => {
+  for (let index = particles.length - 1; index >= 0; index--) {
+    const particle = particles[index];
+
     if (particle.alpha <= 0) {
       particles.splice(index, 1);
     } else {
       particle.update();
     }
-  });
+  }
 
-  projectiles.forEach((projectile, index) => {
+  for (let index = projectiles.length - 1; index >= 0; index--) {
+    const projectile = projectiles[index];
     projectile.update();
 
     // remove from edges of screen
@@ -161,13 +164,13 @@ function animate() {
       projectile.y + projectile.radius < 0 ||
       projectile.y - projectile.radius > canvas.height
     ) {
-      setTimeout(() => {
-        projectiles.splice(index, 1);
-      }, 0);
+      projectiles.splice(index, 1);
     }
-  });
+  }
 
-  enemies.forEach((enemy, index) => {
+  // loop from the back in order to avoir removing the wrong item from the array
+  for (let index = enemies.length - 1; index >= 0; index--) {
+    const enemy = enemies[index];
     enemy.update();
 
     const dist = Math.hypot(player.x - enemy.x, player.y - enemy.y);
@@ -177,7 +180,12 @@ function animate() {
       cancelAnimationFrame(animationId);
     }
 
-    projectiles.forEach((projectile, projectileIndex) => {
+    for (
+      let projectileIndex = projectiles.length - 1;
+      projectileIndex >= 0;
+      projectileIndex--
+    ) {
+      const projectile = projectiles[projectileIndex];
       const dist = Math.hypot(projectile.x - enemy.x, projectile.y - enemy.y);
 
       // when projectile touch enemy
@@ -205,24 +213,20 @@ function animate() {
 
             // this is where we shrink our enemy
             gsap.to(enemy, { radius: enemy.radius - 10 });
-            setTimeout(() => {
-              projectiles.splice(projectileIndex, 1);
-            }, 0);
+            projectiles.splice(projectileIndex, 1);
           } else {
             score += 150;
             scoreEl.innerHTML = score;
 
             // remove enemy if there are too small
-            setTimeout(() => {
-              // avoid the flash effect by telling the next frame to remove the objects
-              enemies.splice(index, 1);
-              projectiles.splice(projectileIndex, 1);
-            }, 0);
+            // setTimeout no longer required as looping back through the array
+            enemies.splice(index, 1);
+            projectiles.splice(projectileIndex, 1);
           }
         }
       }
-    });
-  });
+    }
+  }
 }
 
 addEventListener("click", (e) => {

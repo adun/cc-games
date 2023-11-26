@@ -10,6 +10,7 @@
 - [x] Shrink enemies on hit
 - [x] Create particle explosion on hit
 - [x] Add score
+- [x] More accurate object removal
 - [ ] Add game over UI
 - [ ] Add restart button
 - [ ] Add start game button
