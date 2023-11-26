@@ -13,5 +13,5 @@
 - [x] More accurate object removal
 - [x] Add game over UI
 - [x] Add restart button
-- [ ] Add start game button
+- [x] Add start game button
 - [ ] UI Animations

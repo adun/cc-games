@@ -1,8 +1,10 @@
 const canvas = document.querySelector("canvas");
 const scoreEl = document.querySelector("#scoreEl");
 const modalEl = document.querySelector("#modalEl");
+const startModalEl = document.querySelector("#startModalEl");
 const modalScoreEl = document.querySelector("#modalScoreEl");
 const buttonEl = document.querySelector("#buttonEl");
+const startButtonEl = document.querySelector("#startButtonEl");
 const c = canvas.getContext("2d");
 
 canvas.width = innerWidth;
@@ -124,7 +126,6 @@ function init() {
 
 function spawnEnemies() {
   intervalId = setInterval(() => {
-    console.log(intervalId);
     const radius = Math.random() * (30 - 4) + 4;
 
     let ex;
@@ -263,5 +264,9 @@ buttonEl.addEventListener("click", (e) => {
   modalEl.style.display = "none";
 });
 
-animate();
-spawnEnemies();
+startButtonEl.addEventListener("click", (e) => {
+  init();
+  animate();
+  spawnEnemies();
+  startModalEl.style.display = "none";
+});
