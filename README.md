@@ -15,3 +15,18 @@
 - [x] Add restart button
 - [x] Add start game button
 - [x] UI Animations
+
+# Movement, Enemies, and Enhanced Interaction:
+
+- [x] Player Movement
+- [ ] Homing Enemies
+- [ ] Spinning Enemies
+- [ ] Homing-Spinning Enemies
+- [ ] Power-Ups
+- [ ] Dynamic Score Labels
+- [ ] Interactive Background Particles
+- [ ] Sound Effects
+- [ ] Background Music
+- [ ] Mute Button
+- [ ] Screen Resizing
+- [ ] Mobile Events and Performance
