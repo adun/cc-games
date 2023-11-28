@@ -20,7 +20,7 @@
 
 - [x] Player Movement
 - [x] Homing Enemies
-- [ ] Spinning Enemies
+- [x] Spinning Enemies
 - [ ] Homing-Spinning Enemies
 - [ ] Power-Ups
 - [ ] Dynamic Score Labels
