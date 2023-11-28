@@ -21,7 +21,7 @@
 - [x] Player Movement
 - [x] Homing Enemies
 - [x] Spinning Enemies
-- [ ] Homing-Spinning Enemies
+- [x] Homing-Spinning Enemies
 - [ ] Power-Ups
 - [ ] Dynamic Score Labels
 - [ ] Interactive Background Particles
