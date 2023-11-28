@@ -19,7 +19,7 @@
 # Movement, Enemies, and Enhanced Interaction:
 
 - [x] Player Movement
-- [ ] Homing Enemies
+- [x] Homing Enemies
 - [ ] Spinning Enemies
 - [ ] Homing-Spinning Enemies
 - [ ] Power-Ups

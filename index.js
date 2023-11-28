@@ -88,6 +88,7 @@ class Enemy {
     this.radius = radius;
     this.color = color;
     this.velocity = velocity;
+    this.type = Math.random() < 0.5 ? "Homing" : "Linear";
   }
 
   draw() {
@@ -99,6 +100,12 @@ class Enemy {
 
   update() {
     this.draw();
+
+    if (this.type === "Homing") {
+      const angle = Math.atan2(player.y - this.y, player.x - this.x);
+      this.velocity.x = Math.cos(angle);
+      this.velocity.y = Math.sin(angle);
+    }
     this.x += this.velocity.x;
     this.y += this.velocity.y;
   }
