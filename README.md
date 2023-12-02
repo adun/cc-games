@@ -22,7 +22,7 @@
 - [x] Homing Enemies
 - [x] Spinning Enemies
 - [x] Homing-Spinning Enemies
-- [ ] Power-Ups
+- [x] Power-Ups
 - [ ] Dynamic Score Labels
 - [ ] Interactive Background Particles
 - [ ] Sound Effects
