@@ -22,6 +22,7 @@ let intervalId = undefined;
 let score = 0;
 let powerUps = [];
 let frames = 0;
+let backgroundParticles = [];
 
 function init() {
   player = new Player(x_half, y_half, 10, "white");
@@ -34,6 +35,23 @@ function init() {
   score = 0;
   scoreEl.innerHTML = 0;
   frames = 0;
+  backgroundParticles = [];
+
+  const spacing = 30;
+
+  for (x = 0; x < canvas.width + spacing; x += spacing) {
+    for (y = 0; y < canvas.height + spacing; y += spacing) {
+      backgroundParticles.push(
+        new BackgroundParticle({
+          position: {
+            x,
+            y,
+          },
+          radius: 3,
+        })
+      );
+    }
+  }
 }
 
 function spawnEnemies() {
@@ -105,6 +123,26 @@ function animate() {
   c.fillStyle = "rgba(0, 0, 0, 0.1)";
   c.fillRect(0, 0, canvas.width, canvas.height);
   frames++;
+
+  backgroundParticles.forEach((backgroundParticle) => {
+    backgroundParticle.update();
+
+    const dist = Math.hypot(
+      player.x - backgroundParticle.position.x,
+      player.y - backgroundParticle.position.y
+    );
+
+    if (dist < 100) {
+      backgroundParticle.alpha = 0;
+      if (dist > 70) {
+        backgroundParticle.alpha = 0.5;
+      }
+    } else if (dist > 100 && backgroundParticle.alpha < 0.1) {
+      backgroundParticle.alpha += 0.01;
+    } else if (dist > 100 && backgroundParticle.alpha > 0.1) {
+      backgroundParticle.alpha -= 0.01;
+    }
+  });
 
   player.update();
 
@@ -255,6 +293,18 @@ function animate() {
                 y: projectile.y,
               },
               score: 150,
+            });
+
+            // change background particle color
+            backgroundParticles.forEach((backgroundParticle) => {
+              gsap.set(backgroundParticle, {
+                color: "white",
+                alpha: 1,
+              });
+              gsap.to(backgroundParticle, {
+                color: enemy.color,
+                alpha: 0.1,
+              });
             });
 
             // remove enemy if there are too small

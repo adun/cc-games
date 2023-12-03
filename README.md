@@ -24,7 +24,7 @@
 - [x] Homing-Spinning Enemies
 - [x] Power-Ups
 - [x] Dynamic Score Labels
-- [ ] Interactive Background Particles
+- [x] Interactive Background Particles
 - [ ] Sound Effects
 - [ ] Background Music
 - [ ] Mute Button
