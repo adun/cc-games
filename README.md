@@ -27,6 +27,6 @@
 - [x] Interactive Background Particles
 - [x] Sound Effects
 - [x] Background Music
-- [ ] Mute Button
+- [x] Mute Button
 - [ ] Screen Resizing
 - [ ] Mobile Events and Performance

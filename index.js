@@ -1,11 +1,14 @@
 const canvas = document.querySelector("canvas");
+const c = canvas.getContext("2d");
+
 const scoreEl = document.querySelector("#scoreEl");
 const modalEl = document.querySelector("#modalEl");
-const startModalEl = document.querySelector("#startModalEl");
 const modalScoreEl = document.querySelector("#modalScoreEl");
 const buttonEl = document.querySelector("#buttonEl");
 const startButtonEl = document.querySelector("#startButtonEl");
-const c = canvas.getContext("2d");
+const startModalEl = document.querySelector("#startModalEl");
+const volumeUpEl = document.querySelector("#volumeUpEl");
+const volumeOffEl = document.querySelector("#volumeOffEl");
 
 canvas.width = innerWidth;
 canvas.height = innerHeight;
@@ -335,9 +338,12 @@ function animate() {
   }
 }
 
-addEventListener("click", (e) => {
-  if (!audio.background.playing()) {
+let audioInitialized = false;
+
+window.addEventListener("click", (e) => {
+  if (!audio.background.playing() && !audioInitialized) {
     audio.background.play();
+    audioInitialized = true;
   }
 
   if (game.active) {
@@ -397,6 +403,30 @@ startButtonEl.addEventListener("click", (e) => {
       startModalEl.style.display = "none";
     },
   });
+});
+
+// mute everything
+volumeUpEl.addEventListener("click", (e) => {
+  audio.background.pause();
+  volumeOffEl.style.display = "block";
+  volumeUpEl.style.display = "none";
+
+  for (let key in audio) {
+    audio[key].mute(true);
+  }
+});
+
+// unmute everything
+volumeOffEl.addEventListener("click", (e) => {
+  volumeOffEl.style.display = "none";
+  volumeUpEl.style.display = "block";
+
+  for (let key in audio) {
+    audio[key].mute(false);
+  }
+  if (audioInitialized) {
+    audio.background.play();
+  }
 });
 
 window.addEventListener("keydown", (e) => {
