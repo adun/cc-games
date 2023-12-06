@@ -25,7 +25,7 @@
 - [x] Power-Ups
 - [x] Dynamic Score Labels
 - [x] Interactive Background Particles
-- [ ] Sound Effects
+- [x] Sound Effects
 - [ ] Background Music
 - [ ] Mute Button
 - [ ] Screen Resizing
