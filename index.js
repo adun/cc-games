@@ -336,6 +336,10 @@ function animate() {
 }
 
 addEventListener("click", (e) => {
+  if (!audio.background.playing()) {
+    audio.background.play();
+  }
+
   if (game.active) {
     const angle = Math.atan2(e.clientY - player.y, e.clientX - player.x);
 

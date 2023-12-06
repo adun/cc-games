@@ -26,7 +26,7 @@
 - [x] Dynamic Score Labels
 - [x] Interactive Background Particles
 - [x] Sound Effects
-- [ ] Background Music
+- [x] Background Music
 - [ ] Mute Button
 - [ ] Screen Resizing
 - [ ] Mobile Events and Performance
