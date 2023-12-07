@@ -28,5 +28,7 @@
 - [x] Sound Effects
 - [x] Background Music
 - [x] Mute Button
-- [ ] Screen Resizing
+- [x] Screen Resizing
 - [ ] Mobile Events and Performance
+- [ ] Revisiting setInterval (clearInterval for powerUps and on tab switch)
+- [ ] Deployment

@@ -16,7 +16,7 @@ canvas.height = innerHeight;
 const x_half = canvas.width / 2;
 const y_half = canvas.height / 2;
 
-let player = new Player(x_half, y_half, 10, "white");
+let player;
 let projectiles = [];
 let particles = [];
 let enemies = [];
@@ -31,6 +31,9 @@ let game = {
 };
 
 function init() {
+  const x_half = canvas.width / 2;
+  const y_half = canvas.height / 2;
+
   player = new Player(x_half, y_half, 10, "white");
   projectiles = [];
   particles = [];
@@ -427,6 +430,13 @@ volumeOffEl.addEventListener("click", (e) => {
   if (audioInitialized) {
     audio.background.play();
   }
+});
+
+window.addEventListener("resize", () => {
+  canvas.width = innerWidth;
+  canvas.height = innerHeight;
+
+  init();
 });
 
 window.addEventListener("keydown", (e) => {
