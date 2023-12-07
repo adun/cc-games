@@ -30,5 +30,5 @@
 - [x] Mute Button
 - [x] Screen Resizing
 - [x] Mobile Events and Performance
-- [ ] Revisiting setInterval (clearInterval for powerUps and on tab switch)
+- [x] Revisiting setInterval (clearInterval for powerUps and on tab switch)
 - [ ] Deployment

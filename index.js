@@ -245,6 +245,7 @@ function animate() {
     if (dist - enemy.radius - player.radius < 1) {
       cancelAnimationFrame(animationId);
       clearInterval(intervalId);
+      clearInterval(spawnPowerUpsId);
       audio.death.play();
       game.active = false;
 
@@ -454,6 +455,18 @@ window.addEventListener("touchstart", (e) => {
   const y = e.touches[0].clientY;
 
   shoot({ x, y });
+});
+
+document.addEventListener("visibilitychange", (e) => {
+  if (document.hidden) {
+    // inactive, clear intervals
+    clearInterval(intervalId);
+    clearInterval(spawnPowerUpsId);
+  } else {
+    // active, sawn enemies and powerUps
+    spawnEnemies();
+    spawnPowerUps;
+  }
 });
 
 window.addEventListener("keydown", (e) => {
