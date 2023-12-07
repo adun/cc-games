@@ -117,6 +117,7 @@ function createScoreLabel({ position, score }) {
   scoreLabel.style.left = position.x + "px";
   scoreLabel.style.top = position.y + "px";
   scoreLabel.style.userSelect = "none";
+  scoreLabel.style.pointerEvents = "none";
 
   document.body.appendChild(scoreLabel);
   gsap.to(scoreLabel, {
@@ -343,14 +344,9 @@ function animate() {
 
 let audioInitialized = false;
 
-window.addEventListener("click", (e) => {
-  if (!audio.background.playing() && !audioInitialized) {
-    audio.background.play();
-    audioInitialized = true;
-  }
-
+function shoot({ x, y }) {
   if (game.active) {
-    const angle = Math.atan2(e.clientY - player.y, e.clientX - player.x);
+    const angle = Math.atan2(y - player.y, x - player.x);
 
     const velocity = {
       x: Math.cos(angle) * 4,
@@ -359,6 +355,15 @@ window.addEventListener("click", (e) => {
     projectiles.push(new Projectile(player.x, player.y, 5, "white", velocity));
     audio.shoot.play();
   }
+}
+
+window.addEventListener("click", (e) => {
+  if (!audio.background.playing() && !audioInitialized) {
+    audio.background.play();
+    audioInitialized = true;
+  }
+
+  shoot({ x: e.clientX, y: e.clientY });
 });
 
 const mouse = {
@@ -371,6 +376,11 @@ const mouse = {
 addEventListener("mousemove", (e) => {
   mouse.position.x = e.clientX;
   mouse.position.y = e.clientY;
+});
+
+addEventListener("touchmove", (e) => {
+  mouse.position.x = e.touches[0].clientX;
+  mouse.position.y = e.touches[0].clientY;
 });
 
 // restart game
@@ -437,6 +447,13 @@ window.addEventListener("resize", () => {
   canvas.height = innerHeight;
 
   init();
+});
+
+window.addEventListener("touchstart", (e) => {
+  const x = e.touches[0].clientX;
+  const y = e.touches[0].clientY;
+
+  shoot({ x, y });
 });
 
 window.addEventListener("keydown", (e) => {

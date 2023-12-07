@@ -29,6 +29,6 @@
 - [x] Background Music
 - [x] Mute Button
 - [x] Screen Resizing
-- [ ] Mobile Events and Performance
+- [x] Mobile Events and Performance
 - [ ] Revisiting setInterval (clearInterval for powerUps and on tab switch)
 - [ ] Deployment
