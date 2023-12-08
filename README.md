@@ -31,4 +31,4 @@
 - [x] Screen Resizing
 - [x] Mobile Events and Performance
 - [x] Revisiting setInterval (clearInterval for powerUps and on tab switch)
-- [ ] Deployment
+- [x] Deployment
